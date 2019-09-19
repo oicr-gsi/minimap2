@@ -1,0 +1,25 @@
+{
+  "defaults": {
+    "description": "minimap2 workflow test",
+    "metrics_calculate": "calculate.sh",
+    "metrics_compare": "compare.sh",
+    "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/minimap2",
+    "parameters": {
+      "wdl_options": {
+        "write_to_cache": false,
+        "read_from_cache": false
+      }
+    }
+  },
+  "tests": [
+    {
+      "id": "minimap2Test",
+      "parameters": {
+        "wdl_inputs": {
+          "minimap2.ref": "/oicr/data/genomes/homo_sapiens_mc/UCSC/hg19/Genomic/references/fasta/hg19.f",
+          "minimap2.fastqPath" : "/.mounts/labs/gsiprojects/gsi/ONT_PIPE/output/fastq_runid_fffed01d190f277f93f23e0d7051ae69bc971cd7_0.fastq"
+        }
+      }
+    }
+  ]
+}
