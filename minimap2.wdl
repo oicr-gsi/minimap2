@@ -52,7 +52,7 @@ task sam2Bam {
     }
 
     command <<<
-        ~{samtools} -S -b ~{samfile} > alighnment.bam
+        ~{samtools} view -S -b ~{samfile} > alighnment.bam
     >>>
 
     output {
