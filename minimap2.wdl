@@ -3,12 +3,14 @@ version 1.0
 workflow minimap2 {
     input {
         String ref
-        String fastqPath
+        File fastqFile1
+        File? fastqFile2
     }
     call convert2Sam {
         input:
             ref = ref,
-            fastqPath = fastqPath
+            fastqFile1 = fastqFile1
+            fastqFile2 = fastqFile2
     }
     call sam2Bam {
         input:
@@ -23,7 +25,8 @@ task convert2Sam {
     input {
         String? minimap2 = "minimap2"
         String ref
-        String fastqPath
+        File fastqFile1
+        File? fastqFile2
         String? modules = "minimap2/2.17"
         Int? memory = 31
     }
@@ -31,11 +34,11 @@ task convert2Sam {
     command <<<
         ~{minimap2} \
         -a ~{ref} \
-        ~{fastqPath} > alignment.sam
+        ~{fastqFile1} ~{fastqFile2} > alignment.sam
     >>>
 
     output {
-        File alignment = "./alignment.sam"
+        File alignment = "alignment.sam"
     }
     runtime {
         modules: "~{modules}"
@@ -56,7 +59,7 @@ task sam2Bam {
     >>>
 
     output {
-        File bam = "./alignment.bam"
+        File bam = "alignment.bam"
     }
 
     runtime {
