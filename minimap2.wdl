@@ -2,7 +2,7 @@ version 1.0
 
 workflow minimap2 {
     input {
-        String ref
+        File ref
         File fastqFile1
         File? fastqFile2
     }
@@ -24,7 +24,7 @@ workflow minimap2 {
 task convert2Sam {
     input {
         String? minimap2 = "minimap2"
-        String ref
+        File ref
         File fastqFile1
         File? fastqFile2
         String? modules = "minimap2/2.17"
