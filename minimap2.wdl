@@ -9,7 +9,7 @@ workflow minimap2 {
     call convert2Sam {
         input:
             ref = ref,
-            fastqFile1 = fastqFile1
+            fastqFile1 = fastqFile1,
             fastqFile2 = fastqFile2
     }
     call sam2Bam {
