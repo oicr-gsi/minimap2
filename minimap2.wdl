@@ -18,6 +18,7 @@ workflow minimap2 {
     }
     output {
         File bam = sam2Bam.bam
+        File bamindex = sam2Bam.bamIndex
     }
 }
 
@@ -56,10 +57,12 @@ task sam2Bam {
 
     command <<<
         ~{samtools} view -S -b ~{samfile} > alignment.bam
+        ~{samtools} index alignment.bam
     >>>
 
     output {
         File bam = "alignment.bam"
+        File bamIndex = "alignment.bam.bai"
     }
 
     runtime {
