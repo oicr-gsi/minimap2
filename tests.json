@@ -17,7 +17,7 @@
       "parameters": {
         "wdl_inputs": {
           "minimap2.ref": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-          "minimap2.fastqFile1" : "/.mounts/labs/gsiprojects/gsi/ONT_PIPE/output/fastq_runid_fffed01d190f277f93f23e0d7051ae69bc971cd7_0.fastq"
+          "minimap2.fastqFile1" : "/.mounts/labs/gsiprojects/gsi/ONT_PIPE/output/mergedFastqFile.fastq"
         }
       }
     }
