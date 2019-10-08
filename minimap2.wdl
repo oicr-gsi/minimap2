@@ -35,6 +35,7 @@ task convert2Sam {
     command <<<
         ~{minimap2} \
         -ax map-ont ~{ref} \
+        --MD \
         ~{fastqFile1} ~{fastqFile2} > alignment.sam
     >>>
 
