@@ -3,7 +3,7 @@
     "description": "minimap2 workflow test",
     "metrics_calculate": "calculate.sh",
     "metrics_compare": "compare.sh",
-    "output_metrics_dir": "/.mounts/labs/PDE/data/RegressionTests/minimap2",
+    "output_metrics_dir": "/.mounts/labs/gsi/testdata/minimap2/output_metrics",
     "parameters": {
       "wdl_options": {
         "write_to_cache": false,
@@ -16,8 +16,8 @@
       "id": "minimap2Test",
       "parameters": {
         "wdl_inputs": {
-          "minimap2.ref": "/.mounts/labs/resit/modulator/sw/data/hg19-p13/hg19_random.fa",
-          "minimap2.fastqFile1" : "/.mounts/labs/gsiprojects/gsi/ONT_PIPE/output/mergedFastqFile.fastq"
+          "minimap2.ref": "/.mounts/labs/gsi/testdata/minimap2/input_data/hg19_random.fa",
+          "minimap2.fastqFile1" : "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq"
         }
       }
     }
