@@ -6,6 +6,24 @@ workflow minimap2 {
         File fastqFile1
         File? fastqFile2
     }
+    parameter_meta {
+        ref: "path to the reference file used for alignment"
+        fastqFile1: "a fastq file to be sequenced"
+        fastqFile2: "an optional second fastq file to be sequenced"
+    }
+
+    meta {
+        author: "Matthew Wong"
+        email: "m2wong@oicr.on.ca"
+        description: "Workflow to run align the fastq file to a reference genome"
+        dependencies: [{
+            name: "minimap2",
+            url: "https://github.com/lh3/minimap2"
+        }, {
+            name: "samtools",
+            url: "https://github.com/samtools/samtools"            
+        }]
+    }
     call convert2Sam {
         input:
             ref = ref,
@@ -31,6 +49,19 @@ task convert2Sam {
         String? modules = "minimap2/2.17"
         Int? memory = 31
     }
+    parameter_meta {
+        minimap2: "minimap2 module name to use."
+        ref: "path to the reference file used for alignment"
+        fastqFile1: "A fastq file to be sequenced"
+        fastqFile2: "Optional second fastq file to be sequenced"
+        modules: "Environment module names and version to load (space separated) before command execution."
+        memory: "Memory (in GB) allocated for job."
+    }
+    meta {
+        output_meta : {
+            alignment: "output of minimap2 in .sam format"
+        }
+    }
 
     command <<<
         ~{minimap2} \
@@ -54,6 +85,17 @@ task sam2Bam {
         String? samtools = "samtools"
         String? modules = "samtools/1.9"
         Int? memory = 31
+    }
+    parameter_meta {
+        samtools: "samtools module name to use."
+        samfile: "path to samfile"
+        memory: "Memory (in GB) allocated for job."
+    }
+    meta {
+        output_meta : {
+            bam: "output of samtools in .bam format",
+            bamIndex: "index of the bam file"
+        }
     }
 
     command <<<
