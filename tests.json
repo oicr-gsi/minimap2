@@ -16,7 +16,7 @@
       "id": "minimap2Test",
       "parameters": {
         "wdl_inputs": {
-          "minimap2.ref": "/.mounts/labs/gsi/testdata/minimap2/input_data/hg19_random.fa",
+          "minimap2.ref": "hg19_random.fa",
           "minimap2.fastqFile1" : "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq"
         }
       }
