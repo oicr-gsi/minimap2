@@ -46,7 +46,7 @@ task convert2Sam {
         File ref
         File fastqFile1
         File? fastqFile2
-        String? modules = "minimap2/2.17"
+        String? modules = "minimap2/2.17 hg19/p13"
         Int? memory = 31
     }
     parameter_meta {
@@ -65,7 +65,7 @@ task convert2Sam {
 
     command <<<
         ~{minimap2} \
-        -ax map-ont ~{ref} \
+        -ax map-ont $HG19_ROOT/~{ref} \
         --MD \
         ~{fastqFile1} ~{fastqFile2} > alignment.sam
     >>>
