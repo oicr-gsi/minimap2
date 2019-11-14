@@ -7,7 +7,7 @@ workflow minimap2 {
         File? fastqFile2
     }
     parameter_meta {
-        ref: "path to the reference file used for alignment"
+        ref: "the reference file name used for alignment"
         fastqFile1: "a fastq file to be sequenced"
         fastqFile2: "an optional second fastq file to be sequenced"
     }
