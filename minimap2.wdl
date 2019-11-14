@@ -2,7 +2,7 @@ version 1.0
 
 workflow minimap2 {
     input {
-        File ref
+        String ref
         File fastqFile1
         File? fastqFile2
     }
@@ -43,7 +43,7 @@ workflow minimap2 {
 task convert2Sam {
     input {
         String? minimap2 = "minimap2"
-        File ref
+        String ref
         File fastqFile1
         File? fastqFile2
         String? modules = "minimap2/2.17 hg19/p13"
@@ -51,7 +51,7 @@ task convert2Sam {
     }
     parameter_meta {
         minimap2: "minimap2 module name to use."
-        ref: "path to the reference file used for alignment"
+        ref: "the reference file name used for alignment"
         fastqFile1: "A fastq file to be sequenced"
         fastqFile2: "Optional second fastq file to be sequenced"
         modules: "Environment module names and version to load (space separated) before command execution."
