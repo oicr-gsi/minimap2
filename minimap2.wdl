@@ -5,11 +5,13 @@ workflow minimap2 {
         String ref
         File fastqFile1
         File? fastqFile2
+        String outputFileNamePrefix
     }
     parameter_meta {
         ref: "the reference file name used for alignment"
         fastqFile1: "a fastq file to be sequenced"
         fastqFile2: "an optional second fastq file to be sequenced"
+        outputFileNamePrefix: "Variable used to set the name of the mergedfastqfile"
     }
 
     meta {
@@ -28,7 +30,8 @@ workflow minimap2 {
         input:
             ref = ref,
             fastqFile1 = fastqFile1,
-            fastqFile2 = fastqFile2
+            fastqFile2 = fastqFile2,
+            outputFileNamePrefix = outputFileNamePrefix
     }
     call sam2Bam {
         input:
@@ -44,6 +47,7 @@ task convert2Sam {
     input {
         String? minimap2 = "minimap2"
         String ref
+        String outputFileNamePrefix
         File fastqFile1
         File? fastqFile2
         String? modules = "minimap2/2.17"
@@ -56,6 +60,7 @@ task convert2Sam {
         fastqFile2: "Optional second fastq file to be sequenced"
         modules: "Environment module names and version to load (space separated) before command execution."
         memory: "Memory (in GB) allocated for job."
+        outputFileNamePrefix: "Variable used to set the name of the mergedfastqfile"
     }
     meta {
         output_meta : {
@@ -67,11 +72,11 @@ task convert2Sam {
         ~{minimap2} \
         -ax map-ont ~{ref} \
         --MD \
-        ~{fastqFile1} ~{fastqFile2} > alignment.sam
+        ~{fastqFile1} ~{fastqFile2} > ~{outputFileNamePrefix}.sam
     >>>
 
     output {
-        File alignment = "alignment.sam"
+        File alignment = "~{outputFileNamePrefix}.sam"
     }
     runtime {
         modules: "~{modules}"
