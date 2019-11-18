@@ -11,7 +11,7 @@ workflow minimap2 {
         ref: "the reference file name used for alignment"
         fastqFile1: "a fastq file to be sequenced"
         fastqFile2: "an optional second fastq file to be sequenced"
-        outputFileNamePrefix: "Variable used to set the name of the mergedfastqfile"
+        outputFileNamePrefix: "Variable used to set the name of the outputfile"
     }
 
     meta {
@@ -30,12 +30,12 @@ workflow minimap2 {
         input:
             ref = ref,
             fastqFile1 = fastqFile1,
-            fastqFile2 = fastqFile2,
-            outputFileNamePrefix = outputFileNamePrefix
+            fastqFile2 = fastqFile2
     }
     call sam2Bam {
         input:
-            samfile = convert2Sam.alignment
+            samfile = convert2Sam.alignment,
+            outputFileNamePrefix = outputFileNamePrefix
     }
     output {
         File bam = sam2Bam.bam
@@ -47,7 +47,6 @@ task convert2Sam {
     input {
         String? minimap2 = "minimap2"
         String ref
-        String outputFileNamePrefix
         File fastqFile1
         File? fastqFile2
         String? modules = "minimap2/2.17"
@@ -60,7 +59,6 @@ task convert2Sam {
         fastqFile2: "Optional second fastq file to be sequenced"
         modules: "Environment module names and version to load (space separated) before command execution."
         memory: "Memory (in GB) allocated for job."
-        outputFileNamePrefix: "Variable used to set the name of the mergedfastqfile"
     }
     meta {
         output_meta : {
@@ -72,11 +70,11 @@ task convert2Sam {
         ~{minimap2} \
         -ax map-ont ~{ref} \
         --MD \
-        ~{fastqFile1} ~{fastqFile2} > ~{outputFileNamePrefix}.sam
+        ~{fastqFile1} ~{fastqFile2} > alignment.sam
     >>>
 
     output {
-        File alignment = "~{outputFileNamePrefix}.sam"
+        File alignment = "alignment.sam"
     }
     runtime {
         modules: "~{modules}"
@@ -89,12 +87,14 @@ task sam2Bam {
         File samfile
         String? samtools = "samtools"
         String? modules = "samtools/1.9"
+        String outputFileNamePrefix
         Int? memory = 31
     }
     parameter_meta {
         samtools: "samtools module name to use."
         samfile: "path to samfile"
         memory: "Memory (in GB) allocated for job."
+        outputFileNamePrefix: "Variable used to set the name of the outputfile"
     }
     meta {
         output_meta : {
@@ -110,8 +110,8 @@ task sam2Bam {
     >>>
 
     output {
-        File bam = "alignment.bam"
-        File bamIndex = "alignment.bam.bai"
+        File bam = "~{outputFileNamePrefix}_alignment.bam"
+        File bamIndex = "~{outputFileNamePrefix}_alignment.bam.bai"
     }
 
     runtime {

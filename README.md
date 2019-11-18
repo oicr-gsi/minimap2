@@ -24,7 +24,7 @@ Parameter|Value|Description
 ---|---|---
 `ref`|String|the reference file name used for alignment
 `fastqFile1`|File|a fastq file to be sequenced
-`outputFileNamePrefix`|String|Variable used to set the name of the mergedfastqfile
+`outputFileNamePrefix`|String|Variable used to set the name of the outputfile
 
 
 #### Optional workflow parameters:
