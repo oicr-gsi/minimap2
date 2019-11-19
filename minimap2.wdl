@@ -105,8 +105,8 @@ task sam2Bam {
 
     command <<<
         ~{samtools} view -S -b ~{samfile} > alignment.bam
-        ~{samtools} sort alignment.bam -o alignment.bam
-        ~{samtools} index alignment.bam
+        ~{samtools} sort alignment.bam -o ~{outputFileNamePrefix}_alignment.bam
+        ~{samtools} index ~{outputFileNamePrefix}_alignment.bam
     >>>
 
     output {
