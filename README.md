@@ -23,25 +23,25 @@ java -jar cromwell.jar run minimap2.wdl --inputs inputs.json
 Parameter|Value|Description
 ---|---|---
 `ref`|String|the reference file name used for alignment
-`fastqFile1`|File|a fastq file to be sequenced
+`fastqFile`|File|a fastq file to be aligned
 `outputFileNamePrefix`|String|Variable used to set the name of the outputfile
 
 
 #### Optional workflow parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`fastqFile2`|File?|None|an optional second fastq file to be sequenced
+`additionalParameters`|String?|None|
 
 
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`convert2Sam.minimap2`|String?|"minimap2"|minimap2 module name to use.
-`convert2Sam.modules`|String?|"minimap2/2.17"|Environment module names and version to load (space separated) before command execution.
-`convert2Sam.memory`|Int?|31|Memory (in GB) allocated for job.
-`sam2Bam.samtools`|String?|"samtools"|samtools module name to use.
-`sam2Bam.modules`|String?|"samtools/1.9"|
-`sam2Bam.memory`|Int?|31|Memory (in GB) allocated for job.
+`convert2Sam.minimap2`|String|"minimap2"|minimap2 module name to use.
+`convert2Sam.modules`|String|"minimap2/2.17"|Environment module names and version to load (space separated) before command execution.
+`convert2Sam.memory`|Int|31|Memory (in GB) allocated for job.
+`sam2Bam.samtools`|String|"samtools"|samtools module name to use.
+`sam2Bam.modules`|String|"samtools/1.9"|
+`sam2Bam.memory`|Int|31|Memory (in GB) allocated for job.
 
 
 ### Outputs

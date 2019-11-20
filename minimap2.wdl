@@ -3,14 +3,13 @@ version 1.0
 workflow minimap2 {
     input {
         String ref
-        File fastqFile1
-        File? fastqFile2
+        File fastqFile
         String outputFileNamePrefix
+        String? additionalParameters
     }
     parameter_meta {
         ref: "the reference file name used for alignment"
-        fastqFile1: "a fastq file to be sequenced"
-        fastqFile2: "an optional second fastq file to be sequenced"
+        fastqFile: "a fastq file to be aligned"
         outputFileNamePrefix: "Variable used to set the name of the outputfile"
     }
 
@@ -29,13 +28,13 @@ workflow minimap2 {
     call convert2Sam {
         input:
             ref = ref,
-            fastqFile1 = fastqFile1,
-            fastqFile2 = fastqFile2
+            fastqFile = fastqFile,
+            additionalParameters = additionalParameters
     }
     call sam2Bam {
         input:
             samfile = convert2Sam.alignment,
-            outputFileNamePrefix = outputFileNamePrefix
+            outputFileNamePrefix = outputFileNamePrefix,
     }
     output {
         File bam = sam2Bam.bam
@@ -45,18 +44,17 @@ workflow minimap2 {
 
 task convert2Sam {
     input {
-        String? minimap2 = "minimap2"
+        String minimap2 = "minimap2"
         String ref
-        File fastqFile1
-        File? fastqFile2
-        String? modules = "minimap2/2.17"
-        Int? memory = 31
+        String? additionalParameters
+        File fastqFile
+        String modules = "minimap2/2.17"
+        Int memory = 31
     }
     parameter_meta {
         minimap2: "minimap2 module name to use."
         ref: "the reference file name used for alignment"
-        fastqFile1: "A fastq file to be sequenced"
-        fastqFile2: "Optional second fastq file to be sequenced"
+        fastqFile: "a fastq file to be aligned"
         modules: "Environment module names and version to load (space separated) before command execution."
         memory: "Memory (in GB) allocated for job."
     }
@@ -70,7 +68,8 @@ task convert2Sam {
         ~{minimap2} \
         -ax map-ont ~{ref} \
         --MD \
-        ~{fastqFile1} ~{fastqFile2} > alignment.sam
+        ~{additionalParameters} \
+        ~{fastqFile} > alignment.sam
     >>>
 
     output {
@@ -85,10 +84,10 @@ task convert2Sam {
 task sam2Bam {
     input {
         File samfile
-        String? samtools = "samtools"
-        String? modules = "samtools/1.9"
+        String samtools = "samtools"
+        String modules = "samtools/1.9"
         String outputFileNamePrefix
-        Int? memory = 31
+        Int memory = 31
     }
     parameter_meta {
         samtools: "samtools module name to use."
@@ -105,13 +104,13 @@ task sam2Bam {
 
     command <<<
         ~{samtools} view -S -b ~{samfile} > alignment.bam
-        ~{samtools} sort alignment.bam -o ~{outputFileNamePrefix}_alignment.bam
-        ~{samtools} index ~{outputFileNamePrefix}_alignment.bam
+        ~{samtools} sort alignment.bam -o ~{outputFileNamePrefix}.bam
+        ~{samtools} index ~{outputFileNamePrefix}.bam
     >>>
 
     output {
-        File bam = "~{outputFileNamePrefix}_alignment.bam"
-        File bamIndex = "~{outputFileNamePrefix}_alignment.bam.bai"
+        File bam = "~{outputFileNamePrefix}.bam"
+        File bamIndex = "~{outputFileNamePrefix}.bam.bai"
     }
 
     runtime {
