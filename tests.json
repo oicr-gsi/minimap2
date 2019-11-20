@@ -17,9 +17,20 @@
       "parameters": {
         "wdl_inputs": {
           "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
-          "minimap2.fastqFile1" : "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+          "minimap2.fastqFile" : "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
           "minimap2.convert2Sam.modules": "minimap2/2.17 hg19/p13",
           "minimap2.outputFileNamePrefix": "ID_HERE"
+        }
+      }
+    },
+    {
+      "id": "minimap2EmptyOutputFileNamePrefixTest",
+      "parameters": {
+        "wdl_inputs": {
+          "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
+          "minimap2.fastqFile" : "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+          "minimap2.convert2Sam.modules": "minimap2/2.17 hg19/p13",
+          "minimap2.outputFileNamePrefix": ""
         }
       }
     }
