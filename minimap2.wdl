@@ -4,7 +4,7 @@ workflow minimap2 {
     input {
         String ref
         File fastqFile
-        String outputFileNamePrefix
+        String outputFileNamePrefix = basename( basename(fastqFile, ".gz"), ".fastq")
         String? additionalParameters
     }
     parameter_meta {
