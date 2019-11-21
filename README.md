@@ -30,7 +30,7 @@ Parameter|Value|Description
 Parameter|Value|Default|Description
 ---|---|---|---
 `outputFileNamePrefix`|String|basename(basename(fastqFile,".gz"),".fastq")|Variable used to set the name of the outputfile
-`additionalParameters`|String?|None|Additional parameters to be added to the nanoplot command
+`additionalParameters`|String?|None|Additional parameters to be added to the minimap2 command
 
 
 #### Optional task parameters:

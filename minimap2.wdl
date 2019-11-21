@@ -11,7 +11,7 @@ workflow minimap2 {
         ref: "the reference file name used for alignment"
         fastqFile: "a fastq file to be aligned"
         outputFileNamePrefix: "Variable used to set the name of the outputfile"
-        additionalParameters: "Additional parameters to be added to the nanoplot command"
+        additionalParameters: "Additional parameters to be added to the minimap2 command"
     }
 
     meta {
@@ -58,7 +58,7 @@ task convert2Sam {
         fastqFile: "a fastq file to be aligned"
         modules: "Environment module names and version to load (space separated) before command execution."
         memory: "Memory (in GB) allocated for job."
-        additionalParameters: "Additional parameters to be added to the nanoplot command"
+        additionalParameters: "Additional parameters to be added to the minimap2 command"
     }
     meta {
         output_meta : {
