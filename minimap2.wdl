@@ -16,7 +16,6 @@ workflow minimap2 {
 
     meta {
         author: "Matthew Wong"
-        email: "m2wong@oicr.on.ca"
         description: "Workflow to run align the fastq file to a reference genome"
         dependencies: [{
             name: "minimap2",
