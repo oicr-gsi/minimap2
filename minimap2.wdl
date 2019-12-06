@@ -26,7 +26,7 @@ workflow minimap2 {
             url: "https://github.com/samtools/samtools"            
         }]
     }
-    call convert2Sam {
+    call align {
         input:
             ref = ref,
             fastqFile = fastqFile,
@@ -34,7 +34,7 @@ workflow minimap2 {
     }
     call sam2Bam {
         input:
-            samfile = convert2Sam.alignment,
+            samfile = align.alignment,
             outputFileNamePrefix = outputFileNamePrefix,
     }
     output {
@@ -43,7 +43,7 @@ workflow minimap2 {
     }
 }
 
-task convert2Sam {
+task align {
     input {
         String minimap2 = "minimap2"
         String ref
