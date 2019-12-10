@@ -16,7 +16,7 @@ workflow minimap2 {
 
     meta {
         author: "Matthew Wong"
-        description: "Workflow to run align the fastq file to a reference genome"
+        description: "Workflow to align the fastq file to a reference genome"
         dependencies: [{
             name: "minimap2",
             url: "https://github.com/lh3/minimap2"
