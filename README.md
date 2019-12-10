@@ -1,6 +1,6 @@
 # minimap2
 
-Workflow to run align the fastq file to a reference genome
+Workflow to align the fastq file to a reference genome
 
 ## Overview
 
