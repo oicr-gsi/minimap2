@@ -50,6 +50,7 @@ task align {
         File fastqFile
         String modules = "minimap2/2.17"
         Int memory = 31
+        Int timeout = 24
     }
     parameter_meta {
         minimap2: "minimap2 module name to use."
@@ -57,6 +58,7 @@ task align {
         fastqFile: "a fastq file to be aligned"
         modules: "Environment module names and version to load (space separated) before command execution."
         memory: "Memory (in GB) allocated for job."
+        timeout: "Runtime for the job in hours."
         additionalParameters: "Additional parameters to be added to the minimap2 command"
     }
     meta {
@@ -79,6 +81,7 @@ task align {
     runtime {
         modules: "~{modules}"
         memory: "~{memory} G"
+        timeout: "~{timeout}"
     }
 }
 
@@ -89,11 +92,13 @@ task sam2Bam {
         String modules = "samtools/1.9"
         String outputFileNamePrefix
         Int memory = 31
+        Int timeout = 24
     }
     parameter_meta {
         samtools: "samtools module name to use."
         samfile: "path to samfile"
         memory: "Memory (in GB) allocated for job."
+        timeout: "Runtime for the job in hours."
         outputFileNamePrefix: "Variable used to set the name of the outputfile"
     }
     meta {
@@ -117,5 +122,6 @@ task sam2Bam {
     runtime {
         modules: "~{modules}"
         memory: "~{memory} G"
+        timeout: "~{timeout}"
     }
 }
