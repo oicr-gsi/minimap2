@@ -36,12 +36,14 @@ Parameter|Value|Default|Description
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
-`convert2Sam.minimap2`|String|"minimap2"|minimap2 module name to use.
-`convert2Sam.modules`|String|"minimap2/2.17"|Environment module names and version to load (space separated) before command execution.
-`convert2Sam.memory`|Int|31|Memory (in GB) allocated for job.
+`align.minimap2`|String|"minimap2"|minimap2 module name to use.
+`align.modules`|String|"minimap2/2.17"|Environment module names and version to load (space separated) before command execution.
+`align.memory`|Int|31|Memory (in GB) allocated for job.
+`align.timeout`|Int|24|Runtime for the job in hours.
 `sam2Bam.samtools`|String|"samtools"|samtools module name to use.
 `sam2Bam.modules`|String|"samtools/1.9"|
 `sam2Bam.memory`|Int|31|Memory (in GB) allocated for job.
+`sam2Bam.timeout`|Int|24|Runtime for the job in hours.
 
 
 ### Outputs
