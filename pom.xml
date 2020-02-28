@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>minimap2</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
 
     <properties>
         <workflow-description>Workflow to generate BAM files</workflow-description>
