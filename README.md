@@ -1,4 +1,5 @@
 # minimap2
+POINTLESS
 
 Workflow to align the fastq file to a reference genome
 
