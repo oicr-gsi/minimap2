@@ -1,0 +1,114 @@
+[
+    {
+        "arguments": {
+            "minimap2.additionalParameters": null,
+            "minimap2.align.memory": null,
+            "minimap2.align.minimap2": null,
+            "minimap2.align.modules": "minimap2/2.17 hg19/p13",
+            "minimap2.align.timeout": null,
+            "minimap2.fastqFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.outputFileNamePrefix": "ID_HERE",
+            "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
+            "minimap2.sam2Bam.memory": null,
+            "minimap2.sam2Bam.modules": null,
+            "minimap2.sam2Bam.samtools": null,
+            "minimap2.sam2Bam.timeout": null
+        },
+        "description": "minimap2 workflow test",
+        "engineArguments": {},
+        "id": "minimap2Test",
+        "metadata": {
+            "minimap2.bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2Test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.bamIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2Test_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2Test.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.additionalParameters": null,
+            "minimap2.align.memory": null,
+            "minimap2.align.minimap2": null,
+            "minimap2.align.modules": "minimap2/2.17 hg19/p13",
+            "minimap2.align.timeout": null,
+            "minimap2.fastqFile": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.outputFileNamePrefix": null,
+            "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
+            "minimap2.sam2Bam.memory": null,
+            "minimap2.sam2Bam.modules": null,
+            "minimap2.sam2Bam.samtools": null,
+            "minimap2.sam2Bam.timeout": null
+        },
+        "description": "minimap2 workflow test",
+        "engineArguments": {},
+        "id": "minimap2EmptyOutputFileNamePrefixTest",
+        "metadata": {
+            "minimap2.bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2EmptyOutputFileNamePrefixTest_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.bamIndex": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2EmptyOutputFileNamePrefixTest_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/./calculate.sh",
+                "metrics_compare": "@CHECKOUT@/./compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2EmptyOutputFileNamePrefixTest.metrics",
+                "type": "script"
+            }
+        ]
+    }
+]
