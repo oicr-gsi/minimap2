@@ -36,7 +36,7 @@ workflow minimap2 {
       "index": "CHANGE"
     }
   }
-hisat2/2.2.1
+
   String modulesMinimap2 = resourceByGenome[reference].modules
   String indexMinimap2 = resourceByGenome[reference].index
 
@@ -101,7 +101,7 @@ hisat2/2.2.1
       read2s = if (defined(fastqR2)) then select_first([adapterTrimming.resultR2, extractUMIs.fastqR2, p.right]) else fastqR2,
       modules = modulesMinimap2,
       index = indexMinimap2,
-      readGroups = readGroupFormat.rgOut
+      readGroups = readGroups
     }
   }
 
@@ -129,7 +129,7 @@ hisat2/2.2.1
   meta {
     author: "Matthew Wong, Xuemei Luo and Muna Mohamed"
     email: "xuemei.luo@oicr.on.ca, mmohamed@oicr.on.ca"
-    description: "This workflow aligns sequence data provided as fastq files using hisat2. The alignment is completed using an index built from a reference genome. The workflow borrows functions from the bwaMem workflow, to provide options to remove 5' umi sequences and trim off 3' sequencing adapters prior to alignment. Using these functions, this workflow can also split the input data into a requested number of chunks, align each separately then merge the separate alignments into a single BAM file to decrease workflow runtime. Read-group information must be provided."
+    description: "This workflow aligns sequence data provided as fastq files using minimap2. The alignment is completed using an index built from a reference genome. The workflow borrows functions from the bwaMem workflow, to provide options to remove 5' umi sequences and trim off 3' sequencing adapters prior to alignment. Using these functions, this workflow can also split the input data into a requested number of chunks, align each separately then merge the separate alignments into a single BAM file to decrease workflow runtime. Read-group information must be provided."
     dependencies: [
       {
         name: "minimap2/2.27",
@@ -428,7 +428,7 @@ task runMinimap2 {
   input {
     File read1s
     File? read2s
-    String ref
+    String index
     String readGroups
     String? addParam
     String modules

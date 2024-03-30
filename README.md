@@ -1,75 +1,9 @@
-# minimap2
+WDL parsing error at line 39: Unexpected token Token('STRING1_FRAGMENT', '/2.2.1\n  String modulesMinimap2 = resourceByGenome[reference].modules\n  String indexMinimap2 = resourceByGenome[reference].index\n\n  if (numChunk > 1) {\n    call countChunkSize {\n      input:\n      fastqR1 = fastqR1,\n      numChunk = numChunk,\n      numReads = numReads\n    }\n\n    call slicer as slicerR1 { \n      input: \n      fastqR = fastqR1,\n      chunkSize = countChunkSize.chunkSize\n    }\n\n    if (defined(fastqR2)) {\n      # workaround for converting File? to File\n      File fastqR2File = select_all([fastqR2])[0]\n      call slicer as slicerR2 {\n        input:\n        fastqR = fastqR2File,\n        chunkSize = countChunkSize.chunkSize\n      }\n    }\n  }\n\n  Array[File] fastq1 = select_first([slicerR1.chunkFastq, [fastqR1]])\n\n  if(defined(fastqR2)) {\n    Array[File?] fastq2 = select_first([slicerR2.chunkFastq, [fastqR2]])\n    Array[Pair[File,File?]] pairedFastqs = zip(fastq1,fastq2)\n  }\n\n  if(!defined(fastqR2)) {\n    Array[Pair[File,File?]] singleFastqs = cross(fastq1,[fastqR2])\n  }\n\n  Array[Pair[File,File?]] outputs = select_first([pairedFastqs, singleFastqs])\n\n  scatter (p in outputs) {\n    if (doUMIextract) {\n      call extractUMIs { \n        input:\n        fastq1 = p.left,\n        fastq2 = p.right\n      }\n    }\n\n    if (doTrim) {\n      call adapterTrimming { \n        input:\n        fastqR1 = select_first([extractUMIs.fastqR1, p.left]),\n        fastqR2 = if (defined(fastqR2)) then select_first([extractUMIs.fastqR2, p.right]) else fastqR2\n      }\n    }\n\n    call runMinimap2 { \n      input: \n      read1s = select_first([adapterTrimming.resultR1, extractUMIs.fastqR1, p.left]),\n      read2s = if (defined(fastqR2)) then select_first([adapterTrimming.resultR2, extractUMIs.fastqR2, p.right]) else fastqR2,\n      modules = modulesMinimap2,\n      index = indexMinimap2,\n      readGroups = readGroupFormat.rgOut\n    }\n  }\n\n  call bamMerge {\n    input:\n    outputBams = runMinimap2.outputBam,\n    outputFileNamePrefix = outputFileNamePrefix\n  }\n\n  call indexBam {\n    input:\n    inputBam = bamMerge.outputMergedBam,\n  }\n\n  if (doTrim) {\n    call adapterTrimmingLog {\n      input:\n      inputLogs = select_all(adapterTrimming.log),\n      outputFileNamePrefix = outputFileNamePrefix,\n      numChunk = numChunk,\n      singleEnded = if (defined(fastqR2)) then false else true\n    }\n  }\n\n  meta {\n    author: "Matthew Wong, Xuemei Luo and Muna Mohamed"\n    email: "xuemei.luo@oicr.on.ca, mmohamed@oicr.on.ca"\n    description: "This workflow aligns sequence data provided as fastq files using hisat2. The alignment is completed using an index built from a reference genome. The workflow borrows functions from the bwaMem workflow, to provide options to remove 5') at line 39, column 7.
+Expected one of: 
+	* PLUS
+	* "+?"
+	* CNAME
+	* LSQB
+	* QMARK
+Previous tokens: [Token('CNAME', 'hisat2')]
 
-Workflow to align the fastq file to a reference genome
-
-## Overview
-
-## Dependencies
-
-* [minimap2](https://github.com/lh3/minimap2)
-* [samtools](https://github.com/samtools/samtools)
-
-
-## Usage
-
-### Cromwell
-```
-java -jar cromwell.jar run minimap2.wdl --inputs inputs.json
-```
-
-### Inputs
-
-#### Required workflow parameters:
-Parameter|Value|Description
----|---|---
-`ref`|String|the reference file name used for alignment
-`fastqFile`|File|a fastq file to be aligned
-
-
-#### Optional workflow parameters:
-Parameter|Value|Default|Description
----|---|---|---
-`outputFileNamePrefix`|String|basename(basename(fastqFile,".gz"),".fastq")|Variable used to set the name of the outputfile
-`additionalParameters`|String?|None|Additional parameters to be added to the minimap2 command
-
-
-#### Optional task parameters:
-Parameter|Value|Default|Description
----|---|---|---
-`align.minimap2`|String|"minimap2"|minimap2 module name to use.
-`align.modules`|String|"minimap2/2.17"|Environment module names and version to load (space separated) before command execution.
-`align.memory`|Int|31|Memory (in GB) allocated for job.
-`align.timeout`|Int|24|Runtime for the job in hours.
-`sam2Bam.samtools`|String|"samtools"|samtools module name to use.
-`sam2Bam.modules`|String|"samtools/1.9"|
-`sam2Bam.memory`|Int|31|Memory (in GB) allocated for job.
-`sam2Bam.timeout`|Int|24|Runtime for the job in hours.
-
-
-### Outputs
-
-Output | Type | Description
----|---|---
-`bam`|File|output of samtools in .bam format
-`bamIndex`|File|index of the bam file
-
-
-## Niassa + Cromwell
-
-This WDL workflow is wrapped in a Niassa workflow (https://github.com/oicr-gsi/pipedev/tree/master/pipedev-niassa-cromwell-workflow) so that it can used with the Niassa metadata tracking system (https://github.com/oicr-gsi/niassa).
-
-* Building
-```
-mvn clean install
-```
-
-* Testing
-```
-mvn clean verify -Djava_opts="-Xmx1g -XX:+UseG1GC -XX:+UseStringDeduplication" -DrunTestThreads=2 -DskipITs=false -DskipRunITs=false -DworkingDirectory=/path/to/tmp/ -DschedulingHost=niassa_oozie_host -DwebserviceUrl=http://niassa-url:8080 -DwebserviceUser=niassa_user -DwebservicePassword=niassa_user_password -Dcromwell-host=http://cromwell-url:8000
-```
-
-## Support
-
-For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
-
-_Generated with wdl_doc_gen (https://github.com/oicr-gsi/wdl_doc_gen/)_
