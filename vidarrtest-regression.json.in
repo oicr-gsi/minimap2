@@ -1,14 +1,36 @@
 [
     {
         "arguments": {
-            "minimap2.additionalParameters": null,
-            "minimap2.align.memory": null,
-            "minimap2.align.minimap2": null,
-            "minimap2.align.modules": "minimap2/2.17 hg19/p13",
-            "minimap2.align.timeout": null,
-            "minimap2.fastqFile": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": null,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -18,29 +40,71 @@
                 },
                 "type": "EXTERNAL"
             },
-            "minimap2.outputFileNamePrefix": "ID_HERE",
-            "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
-            "minimap2.sam2Bam.memory": null,
-            "minimap2.sam2Bam.modules": null,
-            "minimap2.sam2Bam.samtools": null,
-            "minimap2.sam2Bam.timeout": null
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": null,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
         },
-        "description": "minimap2 workflow test",
-        "engineArguments": {},
-        "id": "minimap2Test",
+        "description": "Runs the small PCSI_0022 C data without trimming, without splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_notrim_nosplit_bam",
         "metadata": {
-            "minimap2.bam": {
+            "minimap2.minimap2Bam": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2Test_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
             },
-            "minimap2.bamIndex": {
+            "minimap2.minimap2Index": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2Test_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -50,21 +114,43 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2Test.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_notrim_nosplit_bam.metrics",
                 "type": "script"
             }
         ]
     },
     {
         "arguments": {
-            "minimap2.additionalParameters": null,
-            "minimap2.align.memory": null,
-            "minimap2.align.minimap2": null,
-            "minimap2.align.modules": "minimap2/2.17 hg19/p13",
-            "minimap2.align.timeout": null,
-            "minimap2.fastqFile": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -74,29 +160,71 @@
                 },
                 "type": "EXTERNAL"
             },
-            "minimap2.outputFileNamePrefix": null,
-            "minimap2.ref": "$HG19_ROOT/hg19_random.fa",
-            "minimap2.sam2Bam.memory": null,
-            "minimap2.sam2Bam.modules": null,
-            "minimap2.sam2Bam.samtools": null,
-            "minimap2.sam2Bam.timeout": null
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": null,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,            
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
         },
-        "description": "minimap2 workflow test",
-        "engineArguments": {},
-        "id": "minimap2EmptyOutputFileNamePrefixTest",
+        "description": "Runs the small PCSI_0022 C data with trimming, without splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_trim_nosplit_bam",
         "metadata": {
-            "minimap2.bam": {
+            "minimap2.minimap2Bam": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2EmptyOutputFileNamePrefixTest_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
             },
-            "minimap2.bamIndex": {
+            "minimap2.minimap2Index": {
                 "contents": [
                     {
-                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_minimap2EmptyOutputFileNamePrefixTest_@JENKINSID@"
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_@JENKINSID@"
                     }
                 ],
                 "type": "ALL"
@@ -106,7 +234,934 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2EmptyOutputFileNamePrefixTest.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_trim_nosplit_bam.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": 4,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with trimming, with splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_trim_split_bam",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_trim_split_bam.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,            
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": null,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": 4,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data without trimming, with splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_notrim_split_bam",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_notrim_split_bam.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": null,
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": 4,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",  
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",   
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with trimming, with splitting, single ended, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_trim_split_bam_se",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_trim_split_bam_se.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": null,
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": null,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with trimming, with splitting, single ended, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_trim_nosplit_bam_se",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_trim_nosplit_bam_se.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": null,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": null,
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": null,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",   
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with trimming, with splitting, single ended, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_notrim_nosplit_bam_se",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_notrim_nosplit_bam_se_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_notrim_nosplit_bam_se.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": true,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": 4,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",   
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",   
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with umi trimming and adapter trimming, with splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_umi_adapter_trim_split_bam",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_umi_adapter_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_umi_adapter_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_umi_adapter_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_umi_adapter_trim_split_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_umi_adapter_trim_split_bam.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": true,
+            "minimap2.doUMIextract": null,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": null,
+            "minimap2.extractUMIs.pattern2": null,
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": null,
+            "minimap2.fastqR1": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/PCSI0022C.val.2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": 4,
+            "minimap2.numReads": 3713,
+            "minimap2.outputFileNamePrefix": "121005_h804_0096_AD0V4NACXX_PCSI0022C_NoIndex_L006_001",   
+            "minimap2.readGroups": "'@RG\\tID:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tLB:PCSI0022C\\tPL:ILLUMINA\\tPU:121005_h804_0096_AD0V4NACXX-NoIndex_6\\tSM:PCSI0022C'",   
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small PCSI_0022 C data with trimming, with splitting, with numRead provided, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "PCSI0022C_trim_split_numRead_bam",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_numRead_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_numRead_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_numRead_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_PCSI0022C_trim_split_numRead_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/PCSI0022C_trim_split_numRead_bam.metrics",
+                "type": "script"
+            }
+        ]
+    },
+    {
+        "arguments": {
+            "minimap2.adapterTrimming.adapter1": null,
+            "minimap2.adapterTrimming.adapter2": null,
+            "minimap2.adapterTrimming.addParam": null,
+            "minimap2.adapterTrimming.doUMItrim": null,
+            "minimap2.adapterTrimming.jobMemory": null,
+            "minimap2.adapterTrimming.modules": null,
+            "minimap2.adapterTrimming.timeout": null,
+            "minimap2.adapterTrimming.trimMinLength": null,
+            "minimap2.adapterTrimming.trimMinQuality": null,
+            "minimap2.adapterTrimmingLog.jobMemory": null,
+            "minimap2.adapterTrimmingLog.timeout": null,
+            "minimap2.adapterTrimming.umiLength": null,
+            "minimap2.bamMerge.jobMemory": null,
+            "minimap2.bamMerge.modules": null,
+            "minimap2.bamMerge.timeout": null,
+            "minimap2.countChunkSize.modules": null,
+            "minimap2.countChunkSize.jobMemory": null,
+            "minimap2.countChunkSize.timeout": null,
+            "minimap2.doTrim": null,
+            "minimap2.doUMIextract": true,
+            "minimap2.extractUMIs.jobMemory": null,
+            "minimap2.extractUMIs.modules": null,
+            "minimap2.extractUMIs.outputPrefix": null,
+            "minimap2.extractUMIs.pattern1": "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)",
+            "minimap2.extractUMIs.pattern2": "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)",
+            "minimap2.extractUMIs.timeout": null,
+            "minimap2.extractUMIs.umiList": "/.mounts/labs/gsi/testdata/minimap2/input_data/IDT_true_barcodes.txt",
+            "minimap2.fastqR1": {            
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/r1.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.fastqR2": {
+                "contents": {
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/r2.fastq.gz",
+                    "externalIds": [
+                        {
+                            "id": "TEST",
+                            "provider": "TEST"
+                        }
+                    ]
+                },
+                "type": "EXTERNAL"
+            },
+            "minimap2.indexBam.jobMemory": null,
+            "minimap2.indexBam.modules": null,
+            "minimap2.indexBam.timeout": null,
+            "minimap2.numChunk": null,
+            "minimap2.numReads": null,
+            "minimap2.outputFileNamePrefix": "neat_5x_EX_hg38_golden",
+            "minimap2.readGroups": "'@RG\\tID:1\\tLB:neat_5x_EX_hg38_golden\\tPL:illumina\\tPU:run_barcode\\tSM:neat_5x_EX_hg38_golden'",
+            "minimap2.reference": "hg38",
+            "minimap2.runminimap2.addParam": null,
+            "minimap2.runminimap2.jobMemory": null,
+            "minimap2.runminimap2.timeout": null,
+            "minimap2.slicerR1.jobMemory": null,
+            "minimap2.slicerR1.modules": null,
+            "minimap2.slicerR1.timeout": null,
+            "minimap2.slicerR2.jobMemory": null,
+            "minimap2.slicerR2.modules": null,
+            "minimap2.slicerR2.timeout": null
+        },
+        "description": "Runs the small neat 5x data with umi extraction, without splitting, and outputs as BAM.",
+        "engineArguments": {
+            "write_to_cache": false,
+            "read_from_cache": false
+        },
+        "id": "neat_5x_umi_extract_nosplit_bam",
+        "metadata": {
+            "minimap2.minimap2Bam": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_neat_5x_umi_extract_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.minimap2Index": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_neat_5x_umi_extract_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.cutAdaptAllLogs": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_neat_5x_umi_extract_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            },
+            "minimap2.log": {
+                "contents": [
+                    {
+                        "outputDirectory": "@SCRATCH@/@DATE@_Workflow_minimap2_neat_5x_umi_extract_nosplit_bam_@JENKINSID@"
+                    }
+                ],
+                "type": "ALL"
+            }
+        },
+        "validators": [
+            {
+                "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
+                "metrics_compare": "@CHECKOUT@/tests/compare.sh",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/1.0.0/output_metrics/neat_5x_umi_extract_nosplit_bam.metrics",
                 "type": "script"
             }
         ]
