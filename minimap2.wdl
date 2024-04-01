@@ -33,7 +33,7 @@ workflow minimap2 {
   Map[String,minimap2Resources] resourceByGenome = { 
     "hg38": {
       "modules": "samtools/1.14 minimap2/2.28", 
-      "index": "/.mounts/labs/gsiprojects/gsi/gsiusers/mmohamed/dev_minimap2/hg38_minimap2.mmi"
+      "index": "/.mounts/labs/gsiprojects/gsi/gsiusers/mmohamed/dev_minimap2/hg38.mmi"
     }
   }
 
