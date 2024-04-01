@@ -51,8 +51,9 @@ This section lists command(s) run by minimap2 workflow
           -ax sr ~{index} \
           ~{read1s} \
           ~{if (defined(read2s)) then "~{read2s}" else ""} \
-          ~{addParam} \
+          --MD \
           -R ~{readGroups} \
+          ~{addParam} \
     | \
     samtools view -b - \
     | \

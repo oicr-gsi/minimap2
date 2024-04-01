@@ -32,8 +32,8 @@ workflow minimap2 {
 
   Map[String,minimap2Resources] resourceByGenome = { 
     "hg38": {
-      "modules": "samtools/1.14 minimap2/2.27 CHANGE", 
-      "index": "CHANGE"
+      "modules": "samtools/1.14 minimap2/2.28", 
+      "index": "/.mounts/labs/gsiprojects/gsi/gsiusers/mmohamed/dev_minimap2/hg38_minimap2.mmi"
     }
   }
 
@@ -132,8 +132,8 @@ workflow minimap2 {
     description: "This workflow aligns sequence data provided as fastq files using minimap2. The alignment is completed using an index built from a reference genome. The workflow borrows functions from the bwaMem workflow, to provide options to remove 5' umi sequences and trim off 3' sequencing adapters prior to alignment. Using these functions, this workflow can also split the input data into a requested number of chunks, align each separately then merge the separate alignments into a single BAM file to decrease workflow runtime. Read-group information must be provided."
     dependencies: [
       {
-        name: "minimap2/2.27",
-        url: "https://github.com/lh3/minimap2/archive/refs/tags/v2.27.tar.gz"
+        name: "minimap2/2.28",
+        url: "https://github.com/lh3/minimap2/archive/refs/tags/v2.28.tar.gz"
       },
       {
         name: "samtools/1.14",
@@ -164,7 +164,7 @@ workflow minimap2 {
         url: "https://www.rust-lang.org/tools/install"
       },
       { 
-        name: "gsi software modules: samtools/1.14 minimap2/2.27",
+        name: "gsi software modules: samtools/1.14 minimap2/2.28",
         url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
       },
       { 
@@ -457,8 +457,9 @@ task runMinimap2 {
           -ax sr ~{index} \
           ~{read1s} \
           ~{if (defined(read2s)) then "~{read2s}" else ""} \
-          ~{addParam} \
+          --MD \
           -R ~{readGroups} \
+          ~{addParam} \
     | \
     samtools view -b - \
     | \
