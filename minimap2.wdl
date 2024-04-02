@@ -32,8 +32,8 @@ workflow minimap2 {
 
   Map[String,minimap2Resources] resourceByGenome = { 
     "hg38": {
-      "modules": "samtools/1.14 minimap2/2.28", 
-      "index": "/.mounts/labs/gsiprojects/gsi/gsiusers/mmohamed/dev_minimap2/hg38.mmi"
+      "modules": "samtools/1.14 minimap2/2.28 hg38-minimap2-index", 
+      "index": "$HG38_MINIMAP2_INDEX_ROOT/hg38.mmi"
     }
   }
 
@@ -168,7 +168,7 @@ workflow minimap2 {
         url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
       },
       { 
-        name: "gsi hg38 modules: CHANGE",
+        name: "gsi hg38 modules: hg38-minimap2-index",
         url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
       }
     ]

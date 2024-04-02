@@ -6,7 +6,7 @@ This workflow aligns sequence data provided as fastq files using minimap2. The a
 
 ## Dependencies
 
-* [minimap2 2.27](https://github.com/lh3/minimap2/archive/refs/tags/v2.27.tar.gz)
+* [minimap2 2.28](https://github.com/lh3/minimap2/archive/refs/tags/v2.28.tar.gz)
 * [samtools 1.14](https://github.com/samtools/samtools/archive/refs/tags/1.14.tar.gz)
 * [picard 3.1.0](https://github.com/broadinstitute/picard/archive/refs/tags/3.1.0.tar.gz)
 * [cutadapt 1.8.3](https://cutadapt.readthedocs.io/en/v1.8.3/)
@@ -14,8 +14,8 @@ This workflow aligns sequence data provided as fastq files using minimap2. The a
 * [python 3.7](https://www.python.org)
 * [barcodex-rs 0.1.2](https://github.com/oicr-gsi/barcodex-rs/archive/v0.1.2.tar.gz)
 * [rust 1.2](https://www.rust-lang.org/tools/install)
-* [gsi software modules: samtools 1.14 minimap2 2.27](https://gitlab.oicr.on.ca/ResearchIT/modulator)
-* [gsi hg38 modules: CHANGE](https://gitlab.oicr.on.ca/ResearchIT/modulator)
+* [gsi software modules: samtools 1.14 minimap2 2.28](https://gitlab.oicr.on.ca/ResearchIT/modulator)
+* [gsi hg38 modules: hg38-minimap2-index](https://gitlab.oicr.on.ca/ResearchIT/modulator)
 
 
 ## Usage
@@ -151,8 +151,9 @@ Output | Type | Description
            -ax sr ~{index} \
            ~{read1s} \
            ~{if (defined(read2s)) then "~{read2s}" else ""} \
-           ~{addParam} \
+           --MD \
            -R ~{readGroups} \
+           ~{addParam} \
      | \
      samtools view -b - \
      | \
