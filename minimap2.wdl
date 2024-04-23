@@ -39,6 +39,12 @@ workflow minimap2 {
 
   String modulesMinimap2 = resourceByGenome[reference].modules
   String indexMinimap2 = resourceByGenome[reference].index
+  
+  # Validating the read-group information
+  call readGroupCheck {  
+    input: 
+    readGroups = readGroups 
+  }
 
   if (numChunk > 1) {
     call countChunkSize {
@@ -187,6 +193,44 @@ workflow minimap2 {
     File? cutAdaptAllLogs = adapterTrimmingLog.allLogs
   }
 }
+
+
+task readGroupCheck { 
+  input { 
+    String readGroups 
+    Int jobMemory = 1
+    Int timeout = 1 
+  } 
+
+  parameter_meta { 
+    readGroups: "The read-group information to be added into the BAM file header" 
+    jobMemory: "Memory allocated for this job" 
+    timeout: "Hours before task timeout" 
+  } 
+  
+  command <<< 
+    set -euo pipefail 
+    
+    # Split the string into an array 
+    IFS=$'\\t' read -ra readFields <<< ~{readGroups}
+    idPresent=false
+
+    for field in "${readFields[@]}"; do 
+      if [[ $field == ID:* ]]; then idPresent=true; break; fi
+    done 
+
+    # Confirm if string begins with '@RG' and 'ID' field is present
+    if ! [[ ~{readGroups} == @RG* ]] ; then 
+      echo "The read group line is not started with @RG" >&2; exit 1
+    fi
+    if ! $idPresent ; then echo "Missing ID within the read group line" >&2; exit 1 ; fi
+  >>> 
+
+  runtime { 
+    memory: "~{jobMemory} GB" 
+    timeout: "~{timeout}" 
+  } 
+} 
 
 
 # Function copied from the bwaMem workflow
