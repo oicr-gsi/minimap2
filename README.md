@@ -49,6 +49,8 @@ Parameter|Value|Default|Description
 #### Optional task parameters:
 Parameter|Value|Default|Description
 ---|---|---|---
+`readGroupCheck.jobMemory`|Int|1|Memory allocated for this job
+`readGroupCheck.timeout`|Int|1|Hours before task timeout
 `countChunkSize.modules`|String|"python/3.7"|Required environment modules
 `countChunkSize.jobMemory`|Int|16|Memory allocated for this job
 `countChunkSize.timeout`|Int|48|Hours before task timeout
@@ -102,6 +104,26 @@ Output | Type | Description
  This section lists command(s) run by minimap2 workflow
  
  * Running minimap2
+ 
+ === Ensures the read-group information is valid, and in the correct format prior to running the rest of the workflow ===.
+ 
+ ```
+     set -euo pipefail 
+     
+     # Split the string into an array 
+     IFS=$'\\t' read -ra readFields <<< ~{readGroups}
+     idPresent=false
+ 
+     for field in "${readFields[@]}"; do 
+       if [[ $field == ID:* ]]; then idPresent=true; break; fi
+     done 
+ 
+     # Confirm if string begins with '@RG' and 'ID' field is present
+     if ! [[ ~{readGroups} == @RG* ]] ; then 
+       echo "The read group line is not started with @RG" >&2; exit 1
+     fi
+     if ! $idPresent ; then echo "Missing ID within the read group line" >&2; exit 1 ; fi
+ ```
  
  === Parallelizes the alignment by splitting the fastq files into chunks. Subsequent steps will be run on the fastq chunks (Optional) ===.
  
