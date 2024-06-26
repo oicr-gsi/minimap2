@@ -24,6 +24,16 @@ workflow minimap2 {
             name: "samtools",
             url: "https://github.com/samtools/samtools"            
         }]
+        output_meta: {
+          bam: {
+            description: "Alignments, bam file.",
+            vidarr_label: "bam"
+          },
+          bamIndex: {
+            description: "Alignments, bai index",
+            vidarr_label: "bamIndex"
+          }
+        }
     }
     call align {
         input:
@@ -95,6 +105,7 @@ task sam2Bam {
         Int timeout = 24
     }
     parameter_meta {
+        modules: "Modules to load for the task"
         samtools: "samtools module name to use."
         samfile: "path to samfile"
         memory: "Memory (in GB) allocated for job."
