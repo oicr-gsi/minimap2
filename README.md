@@ -41,35 +41,42 @@ Parameter|Value|Default|Description
 `align.memory`|Int|31|Memory (in GB) allocated for job.
 `align.timeout`|Int|24|Runtime for the job in hours.
 `sam2Bam.samtools`|String|"samtools"|samtools module name to use.
-`sam2Bam.modules`|String|"samtools/1.9"|
+`sam2Bam.modules`|String|"samtools/1.9"|Modules to load for the task
 `sam2Bam.memory`|Int|31|Memory (in GB) allocated for job.
 `sam2Bam.timeout`|Int|24|Runtime for the job in hours.
 
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`bam`|File|output of samtools in .bam format
-`bamIndex`|File|index of the bam file
+Output | Type | Description | Labels
+---|---|---|---
+`bam`|File|Alignments, bam file.|vidarr_label: bam
+`bamIndex`|File|Alignments, bai index|vidarr_label: bamIndex
 
 
-## Niassa + Cromwell
-
-This WDL workflow is wrapped in a Niassa workflow (https://github.com/oicr-gsi/pipedev/tree/master/pipedev-niassa-cromwell-workflow) so that it can used with the Niassa metadata tracking system (https://github.com/oicr-gsi/niassa).
-
-* Building
-```
-mvn clean install
-```
-
-* Testing
-```
-mvn clean verify -Djava_opts="-Xmx1g -XX:+UseG1GC -XX:+UseStringDeduplication" -DrunTestThreads=2 -DskipITs=false -DskipRunITs=false -DworkingDirectory=/path/to/tmp/ -DschedulingHost=niassa_oozie_host -DwebserviceUrl=http://niassa-url:8080 -DwebserviceUser=niassa_user -DwebservicePassword=niassa_user_password -Dcromwell-host=http://cromwell-url:8000
-```
-
-## Support
+## Commands
+ This section lists command(s) run by minimap2 workflow
+ 
+ * Running minimap2
+ 
+ ### Run minimap2
+ 
+ ```
+         ~{minimap2} \
+         -ax map-ont ~{ref} \
+         --MD \
+         ~{additionalParameters} \
+         ~{fastqFile} > alignment.sam
+ ```
+ ### Converting to bam, sorting and indexing
+ 
+ ```
+         ~{samtools} view -S -b ~{samfile} > alignment.bam
+         ~{samtools} sort alignment.bam -o ~{outputFileNamePrefix}.bam
+         ~{samtools} index ~{outputFileNamePrefix}.bam
+ ```
+ ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
 
-_Generated with wdl_doc_gen (https://github.com/oicr-gsi/wdl_doc_gen/)_
+_Generated with generate-markdown-readme (https://github.com/oicr-gsi/gsi-wdl-tools/)_

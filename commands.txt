@@ -1,0 +1,21 @@
+## Commands
+This section lists command(s) run by minimap2 workflow
+
+* Running minimap2
+
+### Run minimap2
+
+```
+        ~{minimap2} \
+        -ax map-ont ~{ref} \
+        --MD \
+        ~{additionalParameters} \
+        ~{fastqFile} > alignment.sam
+```
+### Converting to bam, sorting and indexing
+
+```
+        ~{samtools} view -S -b ~{samfile} > alignment.bam
+        ~{samtools} sort alignment.bam -o ~{outputFileNamePrefix}.bam
+        ~{samtools} index ~{outputFileNamePrefix}.bam
+```
