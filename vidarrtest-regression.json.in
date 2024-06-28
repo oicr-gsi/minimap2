@@ -26,7 +26,10 @@
             "minimap2.sam2Bam.timeout": null
         },
         "description": "minimap2 workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "minimap2Test",
         "metadata": {
             "minimap2.bam": {
@@ -82,7 +85,10 @@
             "minimap2.sam2Bam.timeout": null
         },
         "description": "minimap2 workflow test",
-        "engineArguments": {},
+        "engineArguments": {
+           "write_to_cache": false,
+           "read_from_cache": false
+        },
         "id": "minimap2EmptyOutputFileNamePrefixTest",
         "metadata": {
             "minimap2.bam": {
