@@ -8,7 +8,7 @@
             "minimap2.align.timeout": null,
             "minimap2.fastqFile": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/test_inputs/mergedFastq_Test.fastq",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -53,7 +53,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2Test.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/workflow_test_01.metrics",
                 "type": "script"
             }
         ]
@@ -67,7 +67,7 @@
             "minimap2.align.timeout": null,
             "minimap2.fastqFile": {
                 "contents": {
-                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/input_data/mergedFastqFile.fastq",
+                    "configuration": "/.mounts/labs/gsi/testdata/minimap2/test_inputs/mergedFastq_Test.fastq",
                     "externalIds": [
                         {
                             "id": "TEST",
@@ -112,7 +112,7 @@
             {
                 "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
                 "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/minimap2EmptyOutputFileNamePrefixTest.metrics",
+                "output_metrics": "/.mounts/labs/gsi/testdata/minimap2/output_metrics/workflow_test_02.metrics",
                 "type": "script"
             }
         ]
